@@ -2,8 +2,7 @@ package in.bushansirgur.expensetrackerapi.controller;
 
 import in.bushansirgur.expensetrackerapi.entity.Expense;
 import in.bushansirgur.expensetrackerapi.service.ExpenseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +19,15 @@ public class ExpenseController {
     public List<Expense> getAllExpenses() {
         return expenseService.getAllExpenses();
     }
+
+    @GetMapping(value = "/expenses/{id}")
+    public String getExpenseById(@PathVariable Long id) {
+        return "The expense id is " + id;
+    }
+
+    @DeleteMapping("/expenses")
+    public String deleteExpenseById(@RequestParam Long id) {
+        return "Delete the expense object by its id " + id;
+    }
+
 }
