@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -24,5 +27,11 @@ public class Expense {
     private BigDecimal amount;
     private String category;
     private Date date;
+    @Column(name = "create_at",nullable = false,updatable = false)
+    @CreationTimestamp
+    private Timestamp createAt;
 
+    @Column(name = "update_at")
+    @UpdateTimestamp
+    private Timestamp updateAt;
 }
