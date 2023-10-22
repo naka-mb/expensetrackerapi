@@ -2,6 +2,9 @@ package in.bushansirgur.expensetrackerapi.controller;
 
 import in.bushansirgur.expensetrackerapi.entity.Expense;
 import in.bushansirgur.expensetrackerapi.service.ExpenseService;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +20,8 @@ public class ExpenseController {
     }
 
     @GetMapping(value = "/expenses")
-    public List<Expense> getAllExpenses() {
-        return expenseService.getAllExpenses();
+    public Page<Expense> getAllExpenses(Pageable page) {
+        return expenseService.getAllExpenses(page);
     }
 
     @GetMapping(value = "/expenses/{id}")
