@@ -53,4 +53,9 @@ public class ExpenseController {
 //        return number * calculaterFactorial(number -1);
 //    }
 
+    @GetMapping(value = "/expenses/category")
+    public List<Expense> getExpensesByCategory(@RequestParam String category,Pageable page){
+        return expenseService.readByCategory(category,page);
+    }
+
 }
