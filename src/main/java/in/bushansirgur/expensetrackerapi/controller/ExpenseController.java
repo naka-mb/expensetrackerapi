@@ -3,6 +3,7 @@ package in.bushansirgur.expensetrackerapi.controller;
 import in.bushansirgur.expensetrackerapi.entity.Expense;
 import in.bushansirgur.expensetrackerapi.service.ExpenseService;
 
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,8 @@ public class ExpenseController {
 
     @GetMapping(value = "/expenses")
     public Page<Expense> getAllExpenses(Pageable page) {
+//        int number = 1;
+//        calculaterFactorial(number);
         return expenseService.getAllExpenses(page);
     }
 
@@ -37,13 +40,17 @@ public class ExpenseController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(value = "/expenses")
-    public Expense saveExpenseDetails(@RequestBody Expense expense) {
+    public Expense saveExpenseDetails(@Valid @RequestBody Expense expense) {
         return expenseService.saveExpenseDetails(expense);
     }
 
     @PutMapping(value = "/expenses/{id}")
-    public Expense updateExpanseDetails(@RequestBody Expense expense,@PathVariable Long id) {
+    public Expense updateExpanseDetails(@Valid @RequestBody Expense expense, @PathVariable Long id) {
         return expenseService.updateExpenseDetails(id,expense);
     }
+
+//    public int calculaterFactorial(int number) {
+//        return number * calculaterFactorial(number -1);
+//    }
 
 }
