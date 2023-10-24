@@ -6,4 +6,7 @@ import in.bushansirgur.expensetrackerapi.entity.UserModel;
 
 public interface UserService {
     User createUser(UserModel user);
+
+
+
 }
