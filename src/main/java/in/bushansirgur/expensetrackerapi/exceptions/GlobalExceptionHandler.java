@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -66,8 +65,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(ItemAlreadyExistsException.class)
-    public ResponseEntity<ErrorObject>  handleItemExistsException(ItemAlreadyExistsException ex, WebRequest request) {
+    @ExceptionHandler(ItemExistsException.class)
+    public ResponseEntity<ErrorObject>  handleItemExistsException(ItemExistsException ex, WebRequest request) {
         ErrorObject errorObject = new ErrorObject();
         errorObject.setStatusCode(HttpStatus.CONFLICT.value());
         errorObject.setMessage(ex.getMessage());

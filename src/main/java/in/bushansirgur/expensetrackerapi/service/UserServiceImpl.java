@@ -2,7 +2,7 @@ package in.bushansirgur.expensetrackerapi.service;
 
 import in.bushansirgur.expensetrackerapi.entity.User;
 import in.bushansirgur.expensetrackerapi.entity.UserModel;
-import in.bushansirgur.expensetrackerapi.exceptions.ItemAlreadyExistsException;
+import in.bushansirgur.expensetrackerapi.exceptions.ItemExistsException;
 import in.bushansirgur.expensetrackerapi.exceptions.ResourceNotFoundException;
 import in.bushansirgur.expensetrackerapi.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(UserModel user) {
         if(userRepository.existsByEmail(user.getEmail())) {
-            throw new ItemAlreadyExistsException("User is already register with email: " + user.getEmail());
+            throw new ItemExistsException("User is already register with email: " + user.getEmail());
         }
         User newUser = new User();
         BeanUtils.copyProperties(user,newUser);
