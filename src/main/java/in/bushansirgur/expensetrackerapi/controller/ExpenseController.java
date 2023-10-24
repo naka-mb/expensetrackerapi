@@ -37,6 +37,7 @@ public class ExpenseController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping(value = "/expenses")
     public void deleteExpenseById(@RequestParam Long id) {
+        Expense expense = getExpenseById(id);
         expenseService.deleteExpenseById(id);
     }
 
