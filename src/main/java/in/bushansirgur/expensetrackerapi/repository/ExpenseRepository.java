@@ -12,22 +12,16 @@ import in.bushansirgur.expensetrackerapi.entity.Expense;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
+	
+	Page<Expense> findByUserIdAndCategory(Long userId, String category, Pageable page);
+	
+	Page<Expense> findByUserIdAndNameContaining(Long userId, String keyword, Pageable page);
+	
+	Page<Expense> findByUserIdAndDateBetween(Long userId, Date startDate, Date endDate, Pageable page);
+	
+	Page<Expense> findByUserId(Long userId, Pageable page);
+	
+	Optional<Expense> findByUserIdAndId(Long userId, Long expenseId);
 
-    Page<Expense> findByUserIdAndCategory(Long userid,String category,Pageable page);
-
-    Page<Expense> findByUserIdAndNameContaining(Long userid,String keyword,Pageable page);
-
-    Page<Expense> findByUserIdAndDateBetween(Long userid,Date startDate, Date endDate, Pageable page);
-
-    Page<Expense> findByUserId(Long id,Pageable page);
-
-    Optional<Expense> findByUserIdAndId(Long userId,Long expenseId);
-
-
-
-
-
-
-
-
+	
 }
